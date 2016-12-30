@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Chat items</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-searchbar #input (ionInput)="updateList($event, input.value)"></ion-searchbar>
+  
+  <ion-list>
+    <!--<search-box (update)="term=$event"></search-box>-->
+    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+      <ion-icon name="{{item.icon}}" item-left></ion-icon>
+      {{item.title}}
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+      <!--
+      <div class="item-note" item-right>
+        {{item.note}}
+      </div>
+      -->
+    </button>
+  </ion-list>
+  <div *ngIf="selectedItem" padding>
+    You navigated here from <b>{{selectedItem.title}}</b>
+  </div>
+</ion-content>
